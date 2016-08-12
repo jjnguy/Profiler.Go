@@ -31,10 +31,15 @@ namespace Profiling
 
         public T Go<T>(string label, Func<T> code)
         {
+            _resultHandler.LogProfileStart(_session, label, DateTime.UtcNow, _tags);
+
             _watch.Start();
             var result = code();
             _watch.Stop();
+
+            _resultHandler.LogProfileEnd(_session, label, DateTime.UtcNow, _tags);
             _resultHandler.LogProfileResults(_session, label, _watch.Elapsed, _tags);
+
             _watch.Reset();
             return result;
         }

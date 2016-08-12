@@ -28,7 +28,7 @@ namespace Examples
         [TestMethod]
         public void Example2()
         {
-            var profiler = new Profiler(new ElasticSearchProfileResultHandler(new ElasticClient(new Uri("example es uri")), "my-profiling-index"), "example", "simple");
+            var profiler = new Profiler(new ElasticSearchProfileResultHandler(new ElasticClient(new Uri("example ES uri")), "my-profiling-index"), "example", "Elasticsearch");
             profiler.Go("Counting from 1 to a million", () =>
             {
                 var count = 0;
@@ -37,8 +37,6 @@ namespace Examples
                     count = i;
                 }
             });
-
-            var sqrt = profiler.Go("Calculating square root of 2", () => Math.Sqrt(2));
         }
     }
 }

@@ -7,7 +7,7 @@ using Nest;
 
 namespace Profiling.Handlers
 {
-    public class ElasticSearchProfileResultHandler : IProfileResultHandler
+    public class ElasticSearchProfileResultHandler : BaseProfileResultHandler
     {
         private readonly ElasticClient _elasticClient;
         private readonly string _indexName;
@@ -24,7 +24,7 @@ namespace Profiling.Handlers
             }
         }
 
-        public void LogProfileResults(Guid session, string label, TimeSpan elapsed, string[] tags)
+        public override void LogProfileResults(Guid session, string label, TimeSpan elapsed, string[] tags)
         {
             _elasticClient.Index(new ElasticProfilingResult
             {
